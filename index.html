@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Documentation Navigator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>📘 Code Documentation Navigator</h1>
+
+<form action="/search" method="get">
+    <input type="text" name="q" placeholder="Search function or class..."
+           value="{{ query or '' }}">
+    <button type="submit">Search</button>
+</form>
+
+{% if results %}
+<h2>Results:</h2>
+<ul>
+    {% for result in results %}
+    <li>
+        <strong>{{ result.name }}</strong> ({{ result.type }})
+        -
+        <a href="/file?path={{ result.file }}">View File</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+</body>
+</html>
